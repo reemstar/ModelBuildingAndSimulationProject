@@ -1,0 +1,287 @@
+\documentclass[12pt,english,titlepage,a4paper,twoside,bibliography=totoc]{scrreprt}   
+%BCOR8.25mm seht hier bei für den abstand von der linken seite, da diese
+% gebunden wird
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%EINGEBUNDENE PAKETE (immer vor dem document ) 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{bibgerm}			%fuer aufwendigeres literaturverzeichnis mit themes
+%\usepackage{amssymb}			% wichtige Symbole
+\usepackage{graphics}			% Einbinden von Graphiken
+\usepackage[pdftex]{graphicx}
+\usepackage{epstopdf}			%automatischen generieren von pdfs aus eps
+\usepackage{array} 
+\usepackage[centertags]{amsmath}  
+\usepackage{amsfonts}			% Schriftart
+\usepackage{a4}				% Seitenformat
+\usepackage{epsfig}				% Zusaetzliche Graphikbefehle 
+\usepackage{floatflt}			% Tabellen
+\usepackage{scrpage2}			% useheadings
+\usepackage[latin1]{inputenc}	% Umlaute in Windows 
+\usepackage{paralist}			% Bessere Enumerate-Umgebungen (Aufzaehlungszeichen
+% koennen gewaehlt werden) \usepackage{tabular}			% Tabellen
+\usepackage{booktabs}
+\usepackage[]{babel}	
+\usepackage{mparhack}		% bessere Randnotizen
+\usepackage{setspace}		% eigentlich nur fuer den Titel ..
+\usepackage{multirow}		% Row-/Columnspan ..
+\usepackage{longtable}		%fuer mehrseitige tabellen
+\usepackage{makeidx}		%hiermit kann man ein index erstellen, z.b. fuer
+% abkuerngen und sozu
+\usepackage[T1]{fontenc}	%erweiterter buchstabensatz mit umlauten 
+\usepackage{url}			%um URLs darzustellen
+\usepackage{thmbox}			%umgebung fuer theoreme und beispiele
+\usepackage{listings}		%umgebung für programmcode
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{calc}
+\usepackage{floatflt}
+\usepackage{float}
+% \setlength{\textwidth}{16.5cm}
+% \setlength{\evensidemargin}{-0.5cm}
+% \setlength{\oddsidemargin}{0.5cm}
+% \setlength{\marginparwidth}{18mm}
+% \reversemarginpar
+% \let\oldmarginpar\marginpar 
+% \renewcommand\marginpar[1]{\-\oldmarginpar[\raggedleft\scriptsize #1]%
+% {\raggedright\scriptsize #1}}
+
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%FORMATIERUNG DES LISTINGS 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\textwidth-2\fboxsep}{#1#2#3}}}
+\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+%SMC-Sprache 
+\lstdefinelanguage{smc}{ 
+	keywords={Entry, Exit,class,fsmclass,package,start,map,include,import,String,push,pop},
+	morecomment=[s]{/*}{*/},
+	backgroundcolor=\color{light_grey_costum},
+	basicstyle=\footnotesize\ttfamily,           % the size of the fonts that are used for the code
+	numbers=left,                   % where to put the line-numbers 
+  	numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+  	stepnumber=1,                   % the step between two line-numbers. If it's 1, each line 
+                                  % will be numbered
+    numbersep=5pt,                  % how far the line-numbers are from the code
+        % choose the background color. You must add \usepackage{color}
+    showspaces=false,               % show spaces adding particular underscores
+    showstringspaces=false,         % underline spaces within strings
+    showtabs=false,                 % show tabs within strings adding particular underscores
+    frame=lines,                   	  % values: none, leftline, topline,
+							      %bottomline, lines (top and bottom), single for single frames, or shadowbox.
+    rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g.
+   % commens
+  % (green here))
+    tabsize=2,                      % sets default tabsize to 2 spaces
+    captionpos=b,                   % sets the caption-position to bottom
+    breaklines=true,                % sets automatic line breaking
+%      xleftmargin=1.25em,
+%    	framexleftmargin=0.5em 
+}
+ 
+
+%SMC-Farben
+\definecolor{commentGray}{RGB}{99,99,99}
+\definecolor{transitionColor}{RGB}{179,22,51}
+\definecolor{stateColor}{RGB}{39,68,46}
+\definecolor{keywordColor}{RGB}{21,25,181}
+\definecolor{light_grey_costum}{RGB}{229,229,229}
+
+%ACCELEO-Sprache
+\lstdefinelanguage{acceleo}{
+	keywords={module, import,file,if,else,query,public,include,import,for,let,endif,and,not,then,elseif,or,template},
+	extendedchars=true,
+	morecomment=[s]{'}{'},
+	backgroundcolor=\color{light_grey_costum},
+	basicstyle=\footnotesize\ttfamily,           % the size of the fonts that are used for the code
+	numbers=left,                   % where to put the line-numbers 
+  	numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+  	stepnumber=1,                   % the step between two line-numbers. If it's 1, each line 
+                                  % will be numbered
+    numbersep=5pt,                  % how far the line-numbers are from the code
+        % choose the background color. You must add \usepackage{color}
+    showspaces=false,               % show spaces adding particular underscores
+    showstringspaces=false,         % underline spaces within strings
+    showtabs=false,                 % show tabs within strings adding particular underscores
+    frame=lines,                   	  % values: none, leftline, topline,
+							      %bottomline, lines (top and bottom), single for single frames, or shadowbox.
+    rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g.
+   % commens
+  % (green here))
+    tabsize=2,                      % sets default tabsize to 2 spaces
+    captionpos=b,                   % sets the caption-position to bottom
+    breaklines=true,                % sets automatic line breaking
+%      xleftmargin=1.25em,
+%    	framexleftmargin=0.5em 
+}
+
+%SMC-Farben
+\definecolor{query}{RGB}{127,0,85}
+\definecolor{templateColor}{RGB}{195,5,5}
+\definecolor{queryAufruf}{RGB}{80,80,255}
+\definecolor{keywordColor}{RGB}{21,25,181}
+\definecolor{stringColor}{RGB}{63,127,127}
+\definecolor{niceGreenColor}{RGB}{0,127,0}
+
+\DeclareCaptionFormat{figure}{\colorbox{gray}{\parbox{\textwidth-2\fboxsep}{#1#2#3}}}
+\captionsetup[figure]{format=figure,labelfont=white,textfont=white}
+
+
+ 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%tABELLENFORMATIERUNG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  neuer  Befehl:  \includegraphicstotab[..]{..}
+%  Verwendung  analog  wie  \includegraphics
+\newlength{\myx}  %  Variable  zum  Speichern  der  Bildbreite
+\newlength{\myy}  %  Variable  zum  Speichern  der  Bildhöhe
+\newcommand\includegraphicsToTab[2][\relax]{%
+%  Abspeichern  der  Bildabmessungen
+\settowidth{\myx}{\includegraphics[{#1}]{#2}}%
+\settoheight{\myy}{\includegraphics[{#1}]{#2}}%
+%  das  eigentliche  Einfügen
+\parbox[c][1.1\myy][l]{\myx}{%
+\includegraphics[{#1}]{#2}}%
+}%  Ende  neuer  Befehl
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%METAINFORMATIONEN
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[
+	pdftitle={Projectwork: University of Bayreuth: Canteen problem},
+	pdfsubject={University of Bayreuth: Canteen problem},
+	pdfauthor={Alexander Rimer, Eleni Milano},
+	pdfkeywords={Modeling and Simulation, Event-Based-Modeling},
+	colorlinks=true,
+    linkcolor=black,
+    citecolor=black,
+    filecolor=black, 
+    pagecolor=black,
+    urlcolor=black]{hyperref} %Metainformationen  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%SCHRIFT FUER CAPTIONS AENDERN
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setkomafont{caption}{\footnotesize \selectfont}
+\setkomafont{captionlabel}{\footnotesize \bfseries}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%BEGINN
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%		Definitionen					%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Titel}{University of Bayreuth: Canteen problem}
+\newcommand{\Autor}{Alexander Rimer, Eleni Milano}
+\newcommand{\ErsterPruefer}{Prof. Dr. Torsten Eymann}
+%\newcommand{\ZweiterPruefer}{Prof. Dr. Ing. Stefan Jablonski}
+\newcommand{\Betreuer}{Gaurang Phadke}
+\newcommand{\Einreichungsdatum}{31. January 2012}%\today
+\newtheorem[S,bodystyle=\normalfont]{Bsp}{Beispiel}[chapter]%definiere eigene
+% umgebung
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%		Titelseite Bachelorarbeit				%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{empty}
+% \setcounter{chapter}{0} %setzen der counter
+% \setcounter{section}{0}
+ 
+\begin{titlepage}
+	\begin{figure}[!ht] 
+	\end{figure} 
+	\begin{center}
+		\vspace*{20mm} 
+		\textbf{\Huge{\Titel}} \\[25mm] 
+		{\large Project Work} \\[5mm]
+		{\large von} \\[5mm]
+		{\large \Autor} \\[25mm]
+		\textsc{\Large Lehrstuhl f\"ur Wirtschaftsinformatik} \\[3mm]
+		\textsc{\Large Angewandte Informatik XX} \\[3mm]
+  		\textsc{\Large University of  Bayreuth} \\[30mm]
+		\vspace*{2cm}
+		\begin{tabular}{p{8cm} l}   
+		
+		& \textbf{Pr"ufer:} \\
+		Filling date:\hspace{0.6cm} \Einreichungsdatum  
+		& \ErsterPruefer\\ 
+ 	%	& \ZweiterPruefer\\
+ 		& \textbf{Betreuer:} \\ 
+ 		& \Betreuer  		 
+ 	\end{tabular}
+	\end{center}
+\end{titlepage}
+\thispagestyle{empty}
+\setcounter{chapter}{0} %setzen der counter
+\setcounter{section}{0}
+\ \newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%ZUSAMMENFASSUNGEN
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\baselinestretch}{1.1}\normalsize
+\include{chap_1/abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%INHALTSVERZEICHNIS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+\addtocontents{toc}{\protect\thispagestyle{empty}} %unterdrueckt die seitenzahl
+% bei aktueller seite fuer das verzeichnis 
+\include{chap_2/introduction}
+
+\include{chap_3/literal_review}
+\include{chap_4/statement_of_regularities} 
+\include{chap_5/description_of_the_model}
+\include{chap_6/description_of_the_parameters}
+\include{chap_7/description_of_the_results}
+\include{chap_8/discussion_of_steps}
+\include{chap_9/conclusion}
+\include{chap_9_10/acknowledgments}
+
+\tableofcontents 
+\thispagestyle{empty}
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%GLOSSAR drucken
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \chapter*{\underline{Abk"urzungen}} 
+% \thispagestyle{empty} %keine seitenzahl festlegen
+% \begin{tabular}{p{0.1\textwidth}p{0.01\textwidth}p{0.5\textwidth}}
+% 
+% \end{tabular}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%INHALT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \setcounter{chapter}{0} %setzen der counter
+% \setcounter{section}{0}
+\setcounter{page}{0}
+ 
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%ABBILDUNGSVERZEICHNIS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\addcontentsline{toc}{chapter}{\listfigurename} %erzwinige dass das ins
+% verzeichnis kommt
+\listoffigures
+% \thispagestyle{empty} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%CODEBEISPIEL-VERZEICHNIS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\addcontentsline{toc}{chapter}{Listings} 
+\lstlistoflistings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%LITERATUR
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibliographystyle{geralpha}
+%\addcontentsline{toc}{chapter}{\bibname}
+\bibliography{literature/literature}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%ERKLAERUNG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
